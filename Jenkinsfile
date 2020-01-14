@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh "pwd"
                 sh "docker build . -t tomcatsamplewebapp:${env.BUILD_ID}"
-                sh "docker stop ${docker ps -a -q}"
+                sh "docker stop \$(docker ps -a -q)"
                 sh "docker run -d -p 9999:8080 tomcatsamplewebapp:${env.BUILD_ID}"
             }
         }
